@@ -1,0 +1,2 @@
+select * from(select sum(likes::float) over(partition by user_id)/count(post_id::float)over(partition by user_id) avrg,user_id,likes 
+from posts p ) d join users u on u.user_id=d.user_id order by d.avrg desc limit 5
